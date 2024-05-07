@@ -138,6 +138,10 @@ label{
     background-color: #00FF85;
     width: 100%;
 }
+.extrema{
+    background-color: #ec0ec7;
+    width: 100%;
+}
 
 .parametro-senha-textos{
     display: flex;
