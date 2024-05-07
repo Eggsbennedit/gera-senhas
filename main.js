@@ -4,7 +4,7 @@ numeroSenha.textContent = tamanhoSenha;
 const letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVXYWZ';
 const letrasMinusculas = 'abcdefghijklmnopqrstuvxywz';
 const numeros = '0123456789';
-const simbolos = '!@%*?';
+const simbolos = '!@%*? ';
 const botoes = document.querySelectorAll('.parametro-senha__botao');
 const campoSenha = document.querySelector('#campo-senha');
 const checkbox = document.querySelectorAll('.checkbox');
@@ -13,17 +13,24 @@ const forcaSenha = document.querySelector('.forca');
 botoes[0].onclick = diminuiTamanho;
 botoes[1].onclick = aumentaTamanho;
 
+let tudoChecado;
+
 function diminuiTamanho() {
+    tudoChecado = Boolean(checkbox[0].checked && checkbox[1].checked && checkbox[2].checked && checkbox[3].checked);
+
     if (tamanhoSenha > 1) {
-        // tamanhoSenha = tamanhoSenha-1;
         tamanhoSenha--;
     }
     numeroSenha.textContent = tamanhoSenha;
     geraSenha();
 }
 function aumentaTamanho() {
-    if (tamanhoSenha < 999) {
-        // tamanhoSenha = tamanhoSenha+1;
+    tudoChecado = Boolean(checkbox[0].checked && checkbox[1].checked && checkbox[2].checked && checkbox[3].checked);
+
+    if(tamanhoSenha < 999 && tudoChecado){
+        tamanhoSenha++;
+    } else
+    if (tamanhoSenha < 20) {
         tamanhoSenha++;
     }
     numeroSenha.textContent = tamanhoSenha;
@@ -63,7 +70,6 @@ function geraSenha() {
 
 function classificaSenha(tamanhoAlfabeto){
     let entropia = tamanhoSenha * Math.log2(tamanhoAlfabeto);
-    console.log(entropia);
     forcaSenha.classList.remove('fraca','media','forte', 'extrema');
     if (entropia > 57){
         forcaSenha.classList.add('forte');
@@ -73,7 +79,7 @@ function classificaSenha(tamanhoAlfabeto){
         forcaSenha.classList.add('fraca');
     }
     const valorEntropia = document.querySelector('.entropia');
-    if(tamanhoSenha < 20){
+    if(tamanhoSenha < 21){
         valorEntropia.textContent = "Um computador pode levar até " + Math.floor(2**entropia/(100e6*60*60*24)) + " dias para descobrir essa senha.";
     } else {
         valorEntropia.textContent = "Para que uma senha desse tamanho?";
