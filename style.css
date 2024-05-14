@@ -45,9 +45,9 @@ body{
     100% { border-color: #FF0000; }
 }
 @keyframes bgTransition {
-    0% { background-color: #7b02df; }
-    50% { background-color: #ff18ff; }
-    100% { background-color: #7b02df; }
+    0% { background-color: #e40072; }
+    50% { background-color: #ff41ff; }
+    100% { background-color: #e40072; }
 }
 
 .conteudo-senha{
